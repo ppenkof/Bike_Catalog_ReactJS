@@ -10,7 +10,7 @@ export default function Header() {
             <header>
                 <div className="mini-navbar-wrap">
                     <div className="logo-wrap">
-                    <Link to=""><img src="/download.jfif"/></Link>
+                    <Link to=""><img src="images/download.jpg"/></Link>
                         <p className="logo"> <Link to="/">MTB</Link></p>
                     </div>
                     <div className="mini-navbar">

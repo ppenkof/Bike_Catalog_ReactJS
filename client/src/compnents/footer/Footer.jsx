@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 export default function Footer() {
     return (
-        <>
+        <div className="footer">
            <footer>
                 <div>
                     <p>This site is designed to be used for training purposes. ReactJS course Copyright&copy 2025</p>
@@ -14,6 +14,6 @@ export default function Footer() {
                     </p> 
                 </div>
             </footer>
-        </>
+        </div>
     );
 }
