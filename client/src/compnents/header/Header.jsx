@@ -10,15 +10,15 @@ export default function Header() {
             <header>
                 <div className="mini-navbar-wrap">
                     <div className="logo-wrap">
-                    <Link to=""><img src="../htmlCss/images/download.jfif"/></Link>
-                        <p className="logo"> <Link to="#">MTB</Link></p>
+                    <Link to=""><img src="/download.jfif"/></Link>
+                        <p className="logo"> <Link to="/">MTB</Link></p>
                     </div>
                     <div className="mini-navbar">
                         <nav>
                             <ul>
                                
                                 <li>
-                                    <Link to="#">Catalog</Link>
+                                    <Link to="/bikes">Catalog</Link>
                                 </li>  
                                 {/* <li>
                                     <Link to="#">Downhill</Link>
@@ -33,22 +33,22 @@ export default function Header() {
                                 {isAuthenticated ? (
                                 <>
                                  <li>
-                                    <Link to="#">My Rides</Link>
+                                    <Link to="/my-rides">My Rides</Link>
                                 </li>
                                 <li>
-                                    <Link to="#">Add Bike</Link>
+                                    <Link to="/create">Add Bike</Link>
                                 </li>
                                 <li>
-                                    <Link to="#">Logout</Link>
+                                    <Link to="/logout">Logout</Link>
                                 </li>
                                 </>
                                 ) : (
                                  <>   
                                 <li>
-                                <Link to="#">Login</Link>
+                                <Link to="/login">Login</Link>
                                 </li>
                                 <li>
-                                <Link to="#">Register</Link>
+                                <Link to="/register">Register</Link>
                                 </li>
                                 </>
                                 )}
