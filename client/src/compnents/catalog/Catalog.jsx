@@ -1,4 +1,4 @@
-import useRequest from "../../hooks/useRequest";
+import useRequest from "../../../bin/useRequest";
 import BikeCard from "../bike-card/BikeCard";
 
 // const baseUrl = 'http://localhost:3030/jsonstore/games';
@@ -7,8 +7,6 @@ export default function Catalog() {
     const {data: bikes} = useRequest('/data/bikes', []);
 
     return (
-        // <div className="container">
-            // <main>
             <>
                 {bikes.length === 0 && <h3 className="no-articles">No Bikes Yet</h3>}
 
@@ -16,7 +14,5 @@ export default function Catalog() {
                     {bikes.map(bike => <BikeCard key={bike._id} {...bike} />)}
                 </div>
             </>
-            // </main>
-        // </div>
     );
 }

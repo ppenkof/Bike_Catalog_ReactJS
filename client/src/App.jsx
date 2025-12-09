@@ -3,15 +3,15 @@ import Header from "./compnents/header/Header"
 import Footer from "./compnents/footer/Footer"
 import Catalog from "./compnents/catalog/Catalog"
 import Home from "./compnents/home/Home"
-import { useContext } from "react"
-import UserContext from "./contexts/UserContext"
+import UserContext from "./contexts/UserContext1"
 import Details from "./compnents/details/Details"
+import { useUserContext } from "../bin/UserContext"
 
 //import UserContext from "./contexts/UserContext"
 //import { useContext } from "react"
 
 function App() {
-  const {user} = useContext(UserContext);
+  const {user} = useUserContext();
 
   return (
     <>

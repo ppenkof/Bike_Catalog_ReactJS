@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import useRequest from "../../hooks/useRequest";
+import useRequest from "../../../bin/useRequest";
 import BikeCard from "../bike-card/BikeCard";
 import "./home.css";
-import UserContext from "../../contexts/UserContext";
+import UserContext from "../../contexts/UserContext1";
 
 export default function Home() {
     //Second way

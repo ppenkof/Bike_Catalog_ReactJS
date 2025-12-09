@@ -1451,6 +1451,10 @@
 
         booked: {
         
+        },
+
+        comments: {
+            
         }
     };
     var rules$1 = {

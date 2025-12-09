@@ -1,7 +1,7 @@
 //import { useState } from "react";
 //import request from "../../../utils/request";
 import { useParams } from "react-router";
-import useRequest from "../../../hooks/useRequest";
+import useRequest from "../../../../bin/useRequest";
 import useForm from "../../../hooks/useForm";
 
 export default function CreateComent({
