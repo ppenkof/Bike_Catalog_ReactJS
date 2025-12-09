@@ -7,6 +7,7 @@ import Details from "./compnents/details/Details"
 import { useUserContext } from "../bin/UserContext"
 import Login from "./compnents/login/Login"
 import Register from "./compnents/register/Register"
+import Logout from "./compnents/logout/Logout"
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
         {/* <Route path="/bikes/:bikeId/edit" element = {<Edit />} /> */}
         <Route path="/register" element = {<Register />} />
         <Route path="/login" element = {<Login />} />
-        {/* <Route path="/logout" element = {<Logout />} /> */}
+        <Route path="/logout" element = {<Logout />} />
       </Routes>
 
       <Footer /> 

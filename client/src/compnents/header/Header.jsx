@@ -1,6 +1,7 @@
 
 import { Link } from "react-router";
-import { useUserContext } from "../../../bin/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
+
 
 
 export default function Header() {
