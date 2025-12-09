@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../contexts/UserContext";
 
-const baseUrl = 'http://localhost:3030';
+const baseUrl = 'http://localhost:3031';
 
 export default function useRequest(url, initialState) {
     const { user, isAuthenticated } = useContext(UserContext);

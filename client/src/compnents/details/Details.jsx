@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from "react-router";
 import CreateComent from "./create-comment/CreateComent";
 import DetailsComments from "./details-comments/DetailsComments";
-import useRequest from "../../../bin/useRequest";
 import { useState } from "react";
 import "./Details.css";
 import { useUserContext } from "../../../bin/UserContext";
+import useRequest from "../../hooks/useRequest";
 
 export default function Details() {
     const {user, isAuthenticated} = useUserContext();

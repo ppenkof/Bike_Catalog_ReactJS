@@ -3,7 +3,7 @@ import Header from "./compnents/header/Header"
 import Footer from "./compnents/footer/Footer"
 import Catalog from "./compnents/catalog/Catalog"
 import Home from "./compnents/home/Home"
-import UserContext from "./contexts/UserContext1"
+import UserContext from "./contexts/UserContext"
 import Details from "./compnents/details/Details"
 import { useUserContext } from "../bin/UserContext"
 
