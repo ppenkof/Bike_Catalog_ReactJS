@@ -1388,6 +1388,7 @@
             "type": "downhill",
             "description": "The SUPREME DH V4 XS is designed for smaller riders The ROCKSHOX BoXXer Ultimate World Cup fork is the most efficient and ergonomic in terms of adjustments. The 35mm stanchion chassis is perfectly suited for lighter riders.The ROCKSHOX Super Deluxe Select R shock absorber provides sensitivity and dynamism. It fits all riders with its air spring where the volume of the negative and positive chambers can be adjusted independently.",
             "imageUrl": "/images/22SUPXS_2000.jpg",
+            "_createdOn": 1617194350000,
             "likes": 1,
             //"booked": false
             },
@@ -1398,6 +1399,7 @@
             "type": "enduro",
             "description": "The META SX V4 ÖHLINS EDITION brings confidence thanks to the ÖHLINS suspension know-how acquired through the achievement of 400 motorsport world titles... Ride with the best from the Swedish brand. The TTX22 m is certainly one of the best rear shocks for enduro racing. Adopted by many professional riders, it shines thanks to its sensitivity, support, and reliability. The RXF38 m.2 Air fork offers precision and excellent stability on slopes thanks to an air spring equipped with a specific Ramp Up chamber to adjust progressiveness at the end of the stroke, without forgetting its three-way setting TTX hydraulic cartridge.",
             "imageUrl": "/images/22METAAMOHGR.jpg",
+            "_createdOn": 1645708800000,
             "likes": 0,
             //"booked": false
             },
@@ -1408,6 +1410,7 @@
             "type": "enduro",
             "description": "This SIGNATURE edition is one of our top-of-the-range META V5 build. The components are chosen for their efficiency and to perfectly compliment the qualities of the frame. With the 36 Float Factory, we offer what FOX knows how to do best: Kashima anti-friction treatment and GRIP X2 cartridge with different hydraulic settings. On the back, the Float X Factory is specifically tuned for the kinematics of the bike and contributes to the dynamism of the frame. Again, different hydraulic settings to adapt to the terrain and a lock-out lever to climb more efficiently.",
             "imageUrl": "/images/BT4MTRV5SGEU3.jpg",
+            "_createdOn": 1617194450000,
             "likes": 0,
             //"booked": false
             },
@@ -1418,6 +1421,7 @@
             "type": "trail",
             "description": "The META TR ÖHLINS EDITION is designed for precise and committed riders. It benefits from all the knowledge and experience acquired by ÖHLINS in a race environment. The RXF36 m.2 Air fork offers precision and excellent stability on slopes thanks to an air spring equipped with a specific Ramp Up chamber to adjust progressiveness at the end of the stroke, without forgetting its three-way setting TTX hydraulic cartridge. The TTX1 Air shock ticks all the boxes. It offers excellent performance in terms of sensitivity, hold and hydraulics, with simple and precise adjustments.",
             "imageUrl": "/images/22METATROH_2000.jpg",
+            "_createdOn": 1607558400000,
             "likes": 0,
             //"booked": false
             },
@@ -1428,6 +1432,7 @@
             "type":"trail",
             "description": "A true work of art, this T-TYPE edition of T.E.M.P.O. features the sublime 'Crackled Black' paint seen on our athletes' bikes during the 2022 World Championships. Produced exclusively in small numbers, each of the 94 frames have a unique feel. This T.E.M.P.O. T-TYPE has META V5 genes. It is built to do a little more when the rider lets off the brakes and when tackling the most demanding trails.",
             "imageUrl": "/images/23METATCLTD_2000.jpg",
+            "_createdOn": 1609559400000,
             "likes": 0,
             //"booked": false
             },
@@ -1438,6 +1443,7 @@
             "type": "downhill",
             "description": "The SUPREME DH V5 features the groundbreaking High Virtual Contact System kinematics, an innovative design that optimizes both agility and shock absorption. With integrated aluminum frame inserts, you can effortlessly adjust the bike's geometry and performance to suit the day's racing conditions, ensuring you are always at your best on the track.",
             "imageUrl": "/images/BT3SUPV5SG2.jpg",
+            "_createdOn": 1617558400000,
             "likes": 0,
             //"booked": false
             }
