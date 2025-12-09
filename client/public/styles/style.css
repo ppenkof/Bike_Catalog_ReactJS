@@ -27,10 +27,10 @@ body {
     align-items: flex-start;
     justify-content: space-evenly;
 }
-
+/* 
 .bike-container:hover{
     scale: 1.1;
-}
+} */
 
 h2 {
     text-align: center;
@@ -280,5 +280,6 @@ position: -webkit-sticky;
 }
 
 .footer {
-    margin-top: 100vh;   
+    /* margin-top: 50vh;    */
+    position: relative;
 }

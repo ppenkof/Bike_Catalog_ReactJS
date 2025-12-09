@@ -51,12 +51,12 @@ export default function Login() {
             
                 <p className="field field-icon">
                     <label htmlFor="email"><span><i className="fas fa-envelope"></i></span></label>
-                    <input type="email" id="email" {...register('email')} placeholder="Your Email" />
+                    <input type="email" {...register('email')} placeholder="Your Email" />
                 </p>
                 
                 <p className="field field-icon">
                     <label htmlFor="password"><span><i className="fas fa-lock"></i></span></label>
-                    <input type="password" id="login-password" {...register('password')} placeholder="Password" />
+                    <input type="password" {...register('password')} placeholder="Password" />
                 </p>
             
                 <button>Login</button>
