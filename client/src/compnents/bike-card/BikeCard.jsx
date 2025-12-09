@@ -35,7 +35,7 @@ export default function BikeCard({
                                 </div> */}
                             </div>
                             <div className="bike-buttons">
-                                <p>Price: <span>{price}</span></p>
+                                <p>Price: <span>{price}$</span></p>
                                 {/* <!-- <button className=""></button> --> */}
                                 
                                 {/* <button>Test ride</button> */}
