@@ -63,10 +63,6 @@
     font-size: 1.1rem;
 }
 
-/* .welcome main {
-    all: ;
-} */
-
 .welcome main :is(p) { 
     all: revert;
   }

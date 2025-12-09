@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import useRequest from "../../hooks/useRequest";
 import BikeCard from "../bike-card/BikeCard";
-import "./Home.css";
+import "./home.css";
 import UserContext from "../../contexts/UserContext";
 
 export default function Home() {
@@ -20,12 +20,12 @@ export default function Home() {
             </p>
             <div className="logged">
                 <h4>Latest Bikes</h4>
-                <div className="container"> 
-                   <main>
+                {/* <div className="container">  */}
+                   {/* <main> */}
                         {lastestBikes.length === 0 && <p className="no-bikes">No bikes yet</p>}
                         {lastestBikes.map(bike => <BikeCard key={bike._id} {...bike} />)}
-                    </main>
-                </div>
+                    {/* </main> */}
+                {/* </div> */}
             </div>
         </div>
     );

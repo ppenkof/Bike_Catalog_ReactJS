@@ -7,16 +7,16 @@ export default function Catalog() {
     const {data: bikes} = useRequest('/data/bikes', []);
 
     return (
-        <div className="container">
-            <main>
-
+        // <div className="container">
+            // <main>
+            <>
                 {bikes.length === 0 && <h3 className="no-articles">No Bikes Yet</h3>}
 
                 <div className="catalog-container">
                     {bikes.map(bike => <BikeCard key={bike._id} {...bike} />)}
                 </div>
-
-            </main>
-        </div>
+            </>
+            // </main>
+        // </div>
     );
 }

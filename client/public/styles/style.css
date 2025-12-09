@@ -28,6 +28,10 @@ body {
     justify-content: space-evenly;
 }
 
+.bike-container:hover{
+    scale: 1.1;
+}
+
 h2 {
     text-align: center;
     border-bottom: 1px dashed #999;
