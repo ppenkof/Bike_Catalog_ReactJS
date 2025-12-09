@@ -7,7 +7,7 @@ export default function Catalog() {
     const {data: bikes} = useRequest('/data/bikes', []);
 
     return (
-        <div class="container">
+        <div className="container">
             <main>
 
                 {bikes.length === 0 && <h3 className="no-articles">No Bikes Yet</h3>}

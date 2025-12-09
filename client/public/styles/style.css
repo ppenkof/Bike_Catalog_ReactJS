@@ -37,7 +37,7 @@ span {
     font-weight: bold;
 }
 
-button {
+.details-button button {
     color: white;
     background-color: #454b52;
     /* background-color: #acaba9; */
@@ -47,7 +47,7 @@ button {
     
 }
 
-button:hover {
+.details-button:hover button:hover {
     cursor: pointer;
 }
 
@@ -217,12 +217,12 @@ main {
     text-shadow: 1px 1px rgb(0, 0, 0);
 }
 
-.bike-buttons {
+.details-button .bike-buttons {
     text-align: right;
     flex-basis: 25%;
 }
 
-.bike-buttons button {
+.details-button .bike-buttons button {
     padding: 0.2rem 0.5rem;
     border: none;
     border-radius: 0.8rem;
@@ -232,7 +232,21 @@ main {
     background-color: rgba(73, 72, 72, 0.7);
 }
 
-button:hover {
+
+.details-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 2em;
+    background:rgba(73, 72, 72, 0.7); /* blue-600 */
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    margin: 0 45%;
+    /* transition: background 0.2s ease; */
+  }
+  
+
+.details-button:hover button:hover {
     scale: 1.1;
 }
 

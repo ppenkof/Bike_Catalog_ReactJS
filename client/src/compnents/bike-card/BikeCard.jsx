@@ -35,12 +35,13 @@ export default function BikeCard({
                                 </div> */}
                             </div>
                             <div className="bike-buttons">
+                                <p>Price: <span>{price}</span></p>
                                 {/* <!-- <button className=""></button> --> */}
                                 
                                 {/* <button>Test ride</button> */}
                                 {/* <button>Details</button> */}
                                 <Link to={`/bikes/${_id}/details`} className="details-button">Details</Link>
-                                <p>Price: <span>{price}</span></p>
+                                
                             </div>
                         </div>
                     </div>
