@@ -3,12 +3,10 @@ import Header from "./compnents/header/Header"
 import Footer from "./compnents/footer/Footer"
 import Catalog from "./compnents/catalog/Catalog"
 import Home from "./compnents/home/Home"
-import UserContext from "./contexts/UserContext"
 import Details from "./compnents/details/Details"
 import { useUserContext } from "../bin/UserContext"
+import Login from "./compnents/login/Login"
 
-//import UserContext from "./contexts/UserContext"
-//import { useContext } from "react"
 
 function App() {
   const {user} = useUserContext();
@@ -24,7 +22,7 @@ function App() {
         {/* <Route path="/bikes/create" element = {<BikeCreate />} /> */}
         {/* <Route path="/bikes/:bikeId/edit" element = {<Edit />} /> */}
         {/* <Route path="/register" element = {<Register />} /> */}
-        {/* <Route path="/login" element = {<Login />} /> */}
+        <Route path="/login" element = {<Login />} />
         {/* <Route path="/logout" element = {<Logout />} /> */}
       </Routes>
 
