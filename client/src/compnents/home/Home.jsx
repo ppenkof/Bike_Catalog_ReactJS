@@ -6,7 +6,7 @@ import UserContext from "../../contexts/UserContext";
 
 export default function Home() {
     //Second way
-    const {data: lastestBikes} = useRequest(`/data/bikes?sortBy=_createdOn%20desc&pageSize=3`, []);
+    const {data: lastestBikes} = useRequest(`/data/bikes?sortBy=likes%20desc&pageSize=3`, []);//useRequest(`/data/bikes?sortBy=_createdOn%20desc&pageSize=3`, []);
     const {user} = useContext(UserContext);
 
     return (
