@@ -16,6 +16,14 @@ export default function Register() {
             return alert('Email and password are required!');
         }
 
+        if (email.length < 4 ) {
+            return alert('Email is invalid!');
+        }
+
+        if (password.length < 6 ) {
+            return alert('Password is too short!');
+        }
+        
         if (password !== confirmPassword) {
             return alert('Password missmatch!');
         }

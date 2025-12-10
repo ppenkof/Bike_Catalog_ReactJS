@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useForm from "../../hooks/useForm";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
@@ -64,7 +64,7 @@ export default function Login() {
             
                 <p className="text-center">
                     Have an account?
-                    <a routerLink="/register">Register</a>
+                    <Link to="/register">Register</Link>
                 </p>
 
             </fieldset>
