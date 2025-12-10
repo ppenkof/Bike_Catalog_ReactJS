@@ -38,7 +38,7 @@ export default function Header() {
                                     <Link to="/my-rides">My Rides</Link>
                                 </li> */}
                                 <li>
-                                    <Link to="/create">Add Bike</Link>
+                                    <Link to="bikes/create">Add Bike</Link>
                                 </li>
                                 <li>
                                     <Link to="/logout">Logout</Link>

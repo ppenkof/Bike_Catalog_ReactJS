@@ -29,7 +29,8 @@ export default function useRequest(url, initialState) {
                 'X-Authorization': config.accessToken || user.accessToken,
             }
         }
-
+console.log(`User AccessToken is: ${user.accessToken}`);
+console.log(`Options: ${JSON.stringify(options)}`);
         const response = await fetch(`${baseUrl}${url}`, options);
 
         if (!response.ok) {

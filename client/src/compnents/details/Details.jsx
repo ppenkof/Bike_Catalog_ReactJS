@@ -13,23 +13,6 @@ export default function Details() {
     const [refresh, setRefresh] = useState(false);
     const {data: bike, request} = useRequest(`/data/bikes/${bikeId}`, {});
 
-    //Old way with useEffect and useState
-    // useEffect(() => {
-    //     // fetch(`http://localhost:3030/jsonstore/bikes/${bikeId}`)
-    //     //     .then(response => response.json())
-    //     //     .then(result => {
-    //     //         setbike(result);
-    //     //     })
-    //     //     .catch(err => alert(err.message));
-
-    //     request(`/bikes/${bikeId}`)
-    //         .then(result => {
-    //             setbike(result);
-    //         })
-    //         .catch(err => alert(err.message));
-
-    // }, [bikeId]);
-
     const deleteBikeHandler = async () => {
         navigate(`/bikes/${bikeId}/delete`);
 
