@@ -1,10 +1,23 @@
 import useRequest from "../../../bin/useRequest";
+//import { useUserContext } from "../../contexts/UserContext";
 import BikeCard from "../bike-card/BikeCard";
 
-// const baseUrl = 'http://localhost:3030/jsonstore/games';
+
 export default function Catalog() {
     //New method with custom hook
+    //const {user} = useUserContext();
+    // const {data: bikesData} = useRequest('/data/bikes', []);
+
+    // try {
+    //      useRequest('/data/bikes','POST', {...bikesData, _ownerId: user._id}, [])
+
+    // } catch (error) {
+    //     alert(error.message)
+    // }
+   
     const {data: bikes} = useRequest('/data/bikes', []);
+
+    console.log(`Bikes: ${JSON.stringify(bikes)}`);
 
     return (
             <>

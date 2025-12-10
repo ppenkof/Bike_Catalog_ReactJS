@@ -10,26 +10,11 @@ export default function Details() {
     const {user, isAuthenticated, isAdmin} = useUserContext();
     const {bikeId} = useParams();
     const navigate = useNavigate();
-    //const [refresh, setRefresh] = useState(false);
     const {data: bike, request} = useRequest(`/data/bikes/${bikeId}`, {});
-
-    // const urlParams = new URLSearchParams({
-    //     where: `bikeId="${bikeId}"`,
-    //     load: 'author=_ownerId:users'
-    // });
-// console.log(`urlParams: ${urlParams}`);
-// console.log(`BIKEID: ${bikeId}`);
-
     const { data: comments, setData: setComments } = useRequest(`/data/comments`, []); //urlParams.toString()
-
-   // console.log(`Comments: ${JSON.stringify(comments)}`);
     const filteredComments = comments.filter(comment => comment.data.bikeId == bikeId);
-    //console.log(`filteredComment: ${filteredComments}`);
-
-    // Fix bug with additional re-renders
     const [optimisticComments, dispatchOptimisticComments] = useOptimistic(filteredComments, (state, action) => {
-        //console.log(`Comments: ${comments}`);
-        //console.log(`filteredComment: ${JSON.stringify(filteredComments)}`);
+
         switch (action.type) {
             case 'ADD_COMMENT':
                 return [...state, action.payload];
@@ -65,12 +50,23 @@ export default function Details() {
         navigate(`/bikes`);
     }
 
-    // const refreshHandler = () => {
-    //     setRefresh(state => !state);
-    // }
+    const likeBikeHandler = async () => {
+        if (!isAuthenticated || !bike) return;
+        
+        try {
+            const originalLikes = Number(bike.likes ?? 0);
+            // bike.likes = originalLikes + 1;
 
-    const likeBikeHandler = () => {
-
+            await request(`/data/bikes/${bikeId}`, 'PUT', {
+            ...bike,
+            likes: originalLikes//bike.likes,
+            });
+        
+            await request(`/data/bikes/${bikeId}`, 'GET');
+        
+        } catch (error) {
+            alert(`Unable to like bike: ${error?.message ?? 'Unknown error'}`);
+        }   
     }
 
     const createdCommentHandler = (createdComment) => {
@@ -115,7 +111,7 @@ export default function Details() {
                                                 <button className="details-button" onClick={deleteBikeHandler}>Delete</button>
                                                 </> 
                                             ) : (<>
-                                                <button className="details-button" onClick={likeBikeHandler}>Like</button>
+                                                <button className="details-button" onClick={likeBikeHandler} disabled={bike?.likingPending}>Like {typeof bike.likes === "number" ? `(${bike.likes})` : ""}</button>
                                                 <CreateComent user={user} onBegin={beginingCommentHandler} onCreated={createdCommentHandler}/>
                                                 </>)}
                                             {/* <CreateComent user={user} onBegin={beginingCommentHandler} onCreated={createdCommentHandler}/> */}
