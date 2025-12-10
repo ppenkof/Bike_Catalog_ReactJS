@@ -1,4 +1,4 @@
-import useRequest from "../../../bin/useRequest";
+import useRequest from "../../hooks/useRequest";
 //import { useUserContext } from "../../contexts/UserContext";
 import BikeCard from "../bike-card/BikeCard";
 
