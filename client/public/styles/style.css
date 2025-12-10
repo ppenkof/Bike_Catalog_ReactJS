@@ -27,10 +27,6 @@ body {
     align-items: flex-start;
     justify-content: space-evenly;
 }
-/* 
-.bike-container:hover{
-    scale: 1.1;
-} */
 
 h2 {
     text-align: center;
@@ -246,9 +242,18 @@ main {
     font-weight: 500;
     text-decoration: none;
     margin: 1em 45%;
-    /* transition: background 0.2s ease; */
+    min-width: 80px;
   }
   
+textarea{
+     margin-left: 7em;
+    width: 70%;
+    
+}
+
+label {
+    margin-left: 7em;
+}
 
 .details-button:hover button:hover {
     scale: 1.1;

@@ -50,9 +50,9 @@ export default function CreateComent({
                 placeholder="Comment......"
                 ></textarea>
                 <input 
-                    className="btn submit" 
+                    className="details-button" 
                     type="submit" 
-                    value="Add Comment"
+                    value="Comment"
                     disabled={!user}
                 />
             </form>

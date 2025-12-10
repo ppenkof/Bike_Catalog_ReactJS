@@ -34,9 +34,9 @@ export default function Header() {
 
                                 {isAuthenticated ? (
                                 <>
-                                 <li>
+                                 {/* <li>
                                     <Link to="/my-rides">My Rides</Link>
-                                </li>
+                                </li> */}
                                 <li>
                                     <Link to="/create">Add Bike</Link>
                                 </li>

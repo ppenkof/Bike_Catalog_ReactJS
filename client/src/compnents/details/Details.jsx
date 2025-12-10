@@ -3,8 +3,8 @@ import CreateComent from "./create-comment/CreateComent";
 import DetailsComments from "./details-comments/DetailsComments";
 import { useState } from "react";
 import "./Details.css";
-import { useUserContext } from "../../../bin/UserContext";
 import useRequest from "../../hooks/useRequest";
+import { useUserContext } from "../../contexts/UserContext";
 
 export default function Details() {
     const {user, isAuthenticated} = useUserContext();
@@ -91,8 +91,8 @@ export default function Details() {
                                         
                                         {isAuthenticated && (<>
                                         {/* Todo: You can see those buttons if you are a creator */}
-                                            <button className="edit" onClick={editBikeHandler}>Edit</button>
-                                            <button className="delete" onClick={deleteBikeHandler}>Delete</button>
+                                            <button className="details-button" onClick={editBikeHandler}>Edit</button>
+                                            <button className="details-button" onClick={deleteBikeHandler}>Delete</button>
                                             <CreateComent user={user} onCreate={refreshHandler}/>
                                         </>
                                         )}
