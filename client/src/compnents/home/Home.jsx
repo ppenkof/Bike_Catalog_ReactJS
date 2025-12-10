@@ -16,16 +16,12 @@ export default function Home() {
             }
         
             <p>
-                This MTB Website is a place, where you can book a test ride of a bike and like it. You can also see which bikes are the most liked.
+                This MTB Website is a place, where you can comment a bike and like it. You can also see which bikes are the most liked.
             </p>
             <div className="logged">
-                <h4>Latest Bikes</h4>
-                {/* <div className="container">  */}
-                   {/* <main> */}
+                <h4>Latest Bikes</h4>              
                         {lastestBikes.length === 0 && <p className="no-bikes">No bikes yet</p>}
                         {lastestBikes.map(bike => <BikeCard key={bike._id} {...bike} />)}
-                    {/* </main> */}
-                {/* </div> */}
             </div>
         </div>
     );

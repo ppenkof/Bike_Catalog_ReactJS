@@ -22,31 +22,19 @@ export default function Header() {
                                 <li>
                                     <Link to="/bikes">Catalog</Link>
                                 </li>  
-                                {/* <li>
-                                    <Link to="#">Downhill</Link>
-                                </li>
-                                <li>
-                                    <Link to="#">Enduro</Link>
-                                </li>
-                                <li>
-                                    <Link to="#">Trail</Link>
-                                </li> */}
 
                                 {isAuthenticated ? (
-                                <>
-                                 {/* <li>
-                                    <Link to="/my-rides">My Rides</Link>
-                                </li> */}
-                                {isAdmin && (
-                                   <li>
-                                    <Link to="bikes/create">Add Bike</Link>
-                                </li> 
-                                )}
-                                
-                                <li>
-                                    <Link to="/logout">Logout</Link>
-                                </li>
-                                </>
+                                    <>
+                                        {isAdmin && (
+                                            <li>
+                                                <Link to="bikes/create">Add Bike</Link>
+                                            </li> 
+                                        )}
+                                    
+                                    <li>
+                                        <Link to="/logout">Logout</Link>
+                                    </li>
+                                    </>
                                 ) : (
                                  <>   
                                 <li>
@@ -60,20 +48,8 @@ export default function Header() {
                                  
                             </ul>
                         </nav>
-                    </div>
-                    
+                    </div>                
                 </div>
-                {/* <!-- <nav>
-                    <ul>
-                        <li>
-                            <Link to="#">Most Popular</Link>
-                        </li>
-                        <li>
-                            <Link to="#">Downhill Bikes</Link>
-                        </li>
-                    </ul>
-                </nav> --> */}
-
             </header> 
         </>
     ); 

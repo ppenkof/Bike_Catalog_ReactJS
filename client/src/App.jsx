@@ -13,7 +13,7 @@ import { useUserContext } from "./contexts/UserContext"
 
 
 function App() {
-  const {user} = useUserContext();
+  const {user, isAuthenticated, isAdmin} = useUserContext();
 
   return (
     <>
@@ -22,12 +22,18 @@ function App() {
       <Routes>
         <Route path="/" element = {<Home />} />
         <Route path="/bikes" element = {<Catalog />} />
-        <Route path="/bikes/:bikeId/details" element = {<Details user={user}/>} />
-        <Route path="/bikes/create" element = {<BikeCreate />} />
-        <Route path="/bikes/:bikeId/edit" element = {<Edit />} />
         <Route path="/register" element = {<Register />} />
         <Route path="/login" element = {<Login />} />
-        <Route path="/logout" element = {<Logout />} />
+        <Route path="/bikes/:bikeId/details" element = {<Details user={user}/>} />
+        {isAuthenticated && (<>
+          {/* <Route path="/bikes/:bikeId/details" element = {<Details user={user}/>} /> */}
+          {isAdmin && (<>
+            <Route path="/bikes/create" element = {<BikeCreate />} />
+            <Route path="/bikes/:bikeId/edit" element = {<Edit />} />
+          </>)}
+          <Route path="/logout" element = {<Logout />} />
+       </> 
+      )};
       </Routes>
 
       <Footer /> 
