@@ -4,12 +4,12 @@ import Footer from "./compnents/footer/Footer"
 import Catalog from "./compnents/catalog/Catalog"
 import Home from "./compnents/home/Home"
 import Details from "./compnents/details/Details"
-import { useUserContext } from "../bin/UserContext"
 import Login from "./compnents/login/Login"
 import Register from "./compnents/register/Register"
 import Logout from "./compnents/logout/Logout"
 import BikeCreate from "./compnents/bike-create/BikeCreate"
 import Edit from "./compnents/edit/Edit"
+import { useUserContext } from "./contexts/UserContext"
 
 
 function App() {

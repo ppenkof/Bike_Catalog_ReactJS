@@ -1,31 +1,36 @@
-//import { useState } from "react";
-//import request from "../../../utils/request";
 import { useParams } from "react-router";
-import useRequest from "../../../../bin/useRequest";
 import useForm from "../../../hooks/useForm";
+import { v4 as uuid } from 'uuid';
+import useRequest from "../../../hooks/useRequest";
 
 export default function CreateComent({
     user,
-    onCreate
+    onBegin,
+    onCreated
 }) {   
     const {bikeId} = useParams();
-    //const [comment, setComment] = useState('');
     const {request} = useRequest();
 
-    // const changeHandler = (e) => {
-    //     setComment(e.target.value);
-    // };
-
-    const submitHandler = async ({comment}) => { console.log(user.email, comment, bikeId);
-        try {
-            await request('/data/comments', 'POST', {
-            //author: user.email,
+    const submitHandler = async ({comment}) => { 
+        const data = {
+            _id: uuid(),
             message: comment,
-            bikeId
+            bikeId,
+            user
+        };
+
+        onBegin(data);
+
+        if (data.message.length < 4 ) {
+            return alert('Message should be 4 symbols at least!');
+        }
+
+        try {
+            const addedComments = await request('/data/comments', 'POST', {
+            data
         });
 
-        //setComment('');
-        onCreate();
+        onCreated(addedComments);
 
         } catch (error) {
             alert(error.message);
@@ -37,9 +42,9 @@ export default function CreateComent({
         register,
         formAction
     } = useForm(submitHandler, {
-        comment: ''
-    });
+        comment: '',
 
+    });
 
     return (
         <article className="create-comment">
@@ -50,7 +55,7 @@ export default function CreateComent({
                 placeholder="Comment......"
                 ></textarea>
                 <input 
-                    className="details-button" 
+                    className="button" 
                     type="submit" 
                     value="Comment"
                     disabled={!user}

@@ -5,7 +5,8 @@ export default function BikeCard({
     name,
     type,
     price,
-    imageUrl
+    imageUrl,
+    likes,
 }) {
     return (
         <div className="container"> 
@@ -25,20 +26,10 @@ export default function BikeCard({
                                         <div className="nick-name">
                                             <p>Housing: <span><img src={imageUrl} alt={name}/></span></p>
                                         </div>
-                                        {/* <div>
-                                            <p>Decsription: <p>Innovative Technology for Peak Performance
-
-                                                The SUPREME DH V5 features the groundbreaking High Virtual 
-                                                Contact System kinematics, an innovative design that optimizes both 
-                                                agility and shock absorption. With integrated aluminum frame inserts, 
-                                                you can effortlessly adjust the bike's geometry and performance to suit 
-                                                the day's racing conditions, ensuring you are always at your best on the 
-                                                track.</p></p>
-                                        </div> */}
                                     </div>
                                     <div className="bike-buttons">
                                         <p>Price: <span>{price}$</span></p>
-                                        {/* <!-- <button className=""></button> --> */}
+                                        <p>Likes: <span>{likes}</span></p>
                                         
                                         {/* <button>Test ride</button> */}
                                         {/* <button>Details</button> */}

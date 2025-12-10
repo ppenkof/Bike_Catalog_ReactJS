@@ -4,6 +4,7 @@ import useRequest from "../hooks/useRequest";
 
 const UserContext = createContext({
     isAuthenticated: false,
+    isAdmin: false,
     user: {
         email:'',
         password:'',
@@ -44,6 +45,7 @@ export function UserProvider({
     const userContextValues = {
     user,
     isAuthenticated: !!user?.accessToken,
+    isAdmin: (user?.email == 'peter@abv.bg'),
     registerHandler,
     loginHandler,
     logoutHandler

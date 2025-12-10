@@ -5,7 +5,7 @@ import { useUserContext } from "../../contexts/UserContext";
 
 
 export default function Header() {
-    const{isAuthenticated} = useUserContext();
+    const{isAuthenticated, isAdmin} = useUserContext();
 
     return (
         <>
@@ -37,9 +37,12 @@ export default function Header() {
                                  {/* <li>
                                     <Link to="/my-rides">My Rides</Link>
                                 </li> */}
-                                <li>
+                                {isAdmin && (
+                                   <li>
                                     <Link to="bikes/create">Add Bike</Link>
-                                </li>
+                                </li> 
+                                )}
+                                
                                 <li>
                                     <Link to="/logout">Logout</Link>
                                 </li>
