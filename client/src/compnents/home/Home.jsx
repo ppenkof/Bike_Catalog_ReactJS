@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import useRequest from "../../../bin/useRequest";
+import useRequest from "../../hooks/useRequest";
 import BikeCard from "../bike-card/BikeCard";
 import "./home.css";
 import UserContext from "../../contexts/UserContext";
