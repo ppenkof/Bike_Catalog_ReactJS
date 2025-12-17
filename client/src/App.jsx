@@ -10,6 +10,9 @@ import Logout from "./compnents/logout/Logout"
 import BikeCreate from "./compnents/bike-create/BikeCreate"
 import Edit from "./compnents/edit/Edit"
 import { useUserContext } from "./contexts/UserContext"
+import Liked from "./compnents/liked/Liked"
+import EditUser from "./compnents/edit-user/EditUser"
+import MyLikes from "./compnents/myLikes/MyLikes"
 
 
 function App() {
@@ -21,12 +24,14 @@ function App() {
 
       <Routes>
         <Route path="/" element = {<Home />} />
+        <Route path="/the-most-liked" element = {<Liked/>} />
         <Route path="/bikes" element = {<Catalog />} />
         <Route path="/register" element = {<Register />} />
         <Route path="/login" element = {<Login />} />
-        <Route path="/bikes/:bikeId/details" element = {<Details user={user}/>} />
+        <Route path="/bikes/:bikeId/details" element = {<Details user = {user}/>} />
         {isAuthenticated && (<>
-          {/* <Route path="/bikes/:bikeId/details" element = {<Details user={user}/>} /> */}
+          <Route path="/edit-register" element = {<EditUser user = {user}/>} />
+          <Route path="/my-likes" element = {<MyLikes user = {user}/>} />
           {isAdmin && (<>
             <Route path="/bikes/create" element = {<BikeCreate />} />
             <Route path="/bikes/:bikeId/edit" element = {<Edit />} />

@@ -14,11 +14,11 @@ export default function Login() {
         }
 
         try {
-            await loginHandler(email, password);
+            loginHandler(email, password);
 
             navigate('/');
         } catch (err) {
-            alert(err.message);
+            console.error(err.message);
         }
     }
 

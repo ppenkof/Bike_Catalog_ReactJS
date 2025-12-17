@@ -1,7 +1,6 @@
 {
-  "products": {
     "3987279d-0ad4-4afb-8ca9-5b256ae3b202": {
-      "_id": 1,
+      "_id": "3987279d-0ad4-4afb-8ca9-5b256ae3b202",
       "name": "COMMENCAL SUPREME DH V4 XS",
       "price": 25,
       "type": "downhill",
@@ -12,7 +11,7 @@
       "booked": false
     },
     "3987279d-0ad4-4afb-8ca9-5b256ae3b225":{
-      "_id": 2,
+      "_id": "3987279d-0ad4-4afb-8ca9-5b256ae3b225",
       "name": "COMMENCAL META SX V4 ÖHLINS EDITION DARK SLATE",
       "price": 35,
       "type": "enduro",
@@ -23,7 +22,7 @@
       "booked": false
     },
     "3987279d-0ad4-4afb-8ca9-5b256ae3b219": {
-      "_id": 3,
+      "_id": "3987279d-0ad4-4afb-8ca9-5b256ae3b219",
       "name": "COMMENCAL META V5 SIGNATURE GLITTERY WHITE 2025",
       "price": 30,
       "type": "enduro",
@@ -34,7 +33,7 @@
       "booked": false
     },
     "3987279d-0ad4-4afb-8ca9-5b256ae3b210": {
-      "_id": 4,
+      "_id": "3987279d-0ad4-4afb-8ca9-5b256ae3b210",
       "name": "COMMENCAL META TR V4 ÖHLINS EDITION ASH GREY",
       "price": 27.5,
       "type": "trail",
@@ -45,7 +44,7 @@
       "booked": false
     },
     "3987279d-0ad4-4afb-8ca9-5b256ae3b287": {
-      "_id": 5,
+      "_id": "3987279d-0ad4-4afb-8ca9-5b256ae3b287",
       "name": "COMMENCAL T.E.M.P.O. T-TYPE CRACKLED BLACK",
       "price": 37.5,
       "type":"trail",
@@ -56,7 +55,7 @@
       "booked": false
     },
     "3987279d-0ad4-4afb-8ca9-5b256ae3b254": {
-      "_id": 6,
+      "_id": "3987279d-0ad4-4afb-8ca9-5b256ae3b254",
       "name": "COMMENCAL SUPREME DH V5 SIGNATURE LTD PURE WHITE 2025",
       "price": 22,
       "type": "downhill",
@@ -66,5 +65,4 @@
       "likes": 0,
       "booked": false
     }
-  }
 }

@@ -1,14 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useCallback, useState } from "react";
 import UserContext from "../contexts/UserContext";
 
-const baseUrl = 'http://localhost:3031';
+let baseUrl = "http://localhost:3031/jsonstore";
 
 export default function useRequest(url, initialState) {
     const { user, isAuthenticated } = useContext(UserContext);
-    const [data, setData] = useState(initialState);
+    const [dataState, setDataState] = useState(initialState);
 
-    // TODO Fix infinite loop problem on mount request with useEffect
-    const request = async (url, method, data, config = {}) => {
+    const request = useCallback(async (url, method = 'GET', data, config = {}) => {
         let options = {};
 
         if (method) {
@@ -17,7 +16,7 @@ export default function useRequest(url, initialState) {
 
         if (data) {
             options.headers = {
-                'content-type': 'application/json',
+                "content-type": "application/json",
             };
 
             options.body = JSON.stringify(data);
@@ -26,11 +25,10 @@ export default function useRequest(url, initialState) {
         if (config.accessToken || isAuthenticated) {
             options.headers = {
                 ...options.headers,
-                'X-Authorization': config.accessToken || user.accessToken,
-            }
+                "X-Authorization": config.accessToken || user.accessToken, //X-Admin: true - give full access and skip ownership
+            };
         }
-// console.log(`User AccessToken is: ${user.accessToken}`);
-//console.log(`Options: ${JSON.stringify(options)}`);
+
         const response = await fetch(`${baseUrl}${url}`, options);
 
         if (!response.ok) {
@@ -38,25 +36,47 @@ export default function useRequest(url, initialState) {
         }
 
         if (response.status === 204) {
-            return {};
+            return;
         }
 
         const result = await response.json();
 
-        return result;
-    };
+        switch (method) {
+            case "GET":
+                setDataState(Object.values(result));
+                break;
+            case "POST":
+                setDataState(state => [...state, result]);
+                break;
+            case "PUT":
+                setDataState(state => state.map(currentItem => {
+                    if (currentItem._id !== data._id) {
+                        return { ...result };
+                    } else {
+                        return currentItem;
+                    }
+                }));
+                break;
+            case "DELETE":
+                setDataState(state => state.filter(currentItem => currentItem._id !== data._id));
+                break;
+            default:
+                break;
+        }
+
+    }, [isAuthenticated, user]);
 
     useEffect(() => {
         if (!url) return;
 
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         request(url)
-            .then(result => setData(result))
-            .catch(err => alert(err));
-    }, [url]);
+            .catch((err) => alert(err));
+
+    }, [url, request]);
 
     return {
-        request,
-        data,
-        setData,
-    }
+        request: request,
+        data: dataState,
+    };
 }

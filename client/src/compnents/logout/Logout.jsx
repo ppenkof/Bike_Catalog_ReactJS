@@ -7,11 +7,13 @@ export default function Logout() {
     const navigate = useNavigate();
 
     logoutHandler()
-        .then(() => navigate('/'))
+        .then(() => {
+            navigate('/');
+        })
         .catch(() => {
             alert('Problem with logout')
             navigate('/');
         })
 
-    return null;
+    return <></>;
 }

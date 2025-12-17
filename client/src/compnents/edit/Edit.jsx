@@ -12,7 +12,7 @@ export default function Edit() {
     const editGameHandler = async (values) => {
          values.price = Number(values.price);
         try {
-            await request(`/data/bikes/${bikeId}`, 'PUT', values);
+            await request(`/bikes/${bikeId}`, 'PUT', values, );
 
             navigate(`/bikes/${bikeId}/details`);
         } catch (err) {
@@ -34,7 +34,7 @@ export default function Edit() {
     });
 
      useEffect(() => {
-        request(`/data/bikes/${bikeId}`)
+        request(`/bikes/${bikeId}`)
             .then(result => {
                 setValues(result);
             })

@@ -22,6 +22,9 @@ export default function Header() {
                                 <li>
                                     <Link to="/bikes">Catalog</Link>
                                 </li>  
+                                <li>
+                                    <Link to="/the-most-liked">Really Liked</Link>
+                                </li>  
 
                                 {isAuthenticated ? (
                                     <>
@@ -30,10 +33,16 @@ export default function Header() {
                                                 <Link to="bikes/create">Add Bike</Link>
                                             </li> 
                                         )}
-                                    
+                                    <li>
+                                        <Link to="/my-likes">My Likes</Link>
+                                    </li>
+                                     <li>
+                                        <Link to="/edit-register">Edit User</Link>
+                                    </li>
                                     <li>
                                         <Link to="/logout">Logout</Link>
                                     </li>
+                                   
                                     </>
                                 ) : (
                                  <>   

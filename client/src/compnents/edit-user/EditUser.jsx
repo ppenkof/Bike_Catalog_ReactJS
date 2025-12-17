@@ -1,10 +1,12 @@
 import { Link, useNavigate } from "react-router";
 import useForm from "../../hooks/useForm";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import UserContext from "../../contexts/UserContext";
-import './register.css'
 
-export default function Register() {
+
+export default function EditUser({
+   user
+}) {
     const navigate = useNavigate();
     const { registerHandler } = useContext(UserContext)
     
@@ -41,39 +43,29 @@ export default function Register() {
         }
     }
 
+    
+    
     const {
         register,
         formAction,
+        setValues
     } = useForm(registerSubmitHandler, {
-        email: '',
-        password: '',
-        confirmPassword: '',
+        email:'',
+        password:'',
+        confirmPassword:'',
     });
 
+
+useEffect(() => {
+    setValues(user);
+console.log(user);
+}, [user._id]);
+    
+
     return (
-        // <section id="register-page" className="content auth">
-        //     <form id="register" action={formAction}>
-        //         <div className="container">
-        //             <div className="brand-logo"></div>
-        //             <h1>Register</h1>
-
-        //             <label htmlFor="email">Email:</label>
-        //             <input type="email" id="email" {...register('email')} placeholder="Your Email" />
-
-        //             <label htmlFor="pass">Password:</label>
-        //             <input type="password" id="register-password" {...register('password')} placeholder="Password" />
-
-        //             <label htmlFor="con-pass">Confirm Password:</label>
-        //             <input type="password" id="confirm-password" {...register('confirmPassword')} placeholder="Repeat Password" />
-
-        //             <input className="btn submit" type="submit" value="Register" />
-        //         </div>
-        //     </form>
-        // </section>
-
         <form className="register" action={formAction}>
             <fieldset>
-            <h2>Registration Form</h2>
+            <h2>Edit User Data</h2>
 
             {/* <!-- email --> */}
             <p className="field field-icon">
@@ -96,7 +88,7 @@ export default function Register() {
                
             </div>
 
-            <button>Create Account</button>
+            <button>Edit Account</button>
 
             <p className="text-center">
                 Have an account?
@@ -105,6 +97,6 @@ export default function Register() {
 
             </fieldset>
         </form>
-
+      
     );
 }

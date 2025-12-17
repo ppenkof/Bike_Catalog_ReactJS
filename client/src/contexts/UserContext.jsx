@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
-import useRequest from "../hooks/useRequest";
+import useRequest from "../hooks/useRequest_copy";
+
 
 const UserContext = createContext({
     isAuthenticated: false,
@@ -25,7 +26,7 @@ export function UserProvider({
   
     const registerHandler = async (email, password)=>{
         const newUser = {email, password};
-
+        
         const result = await request('/users/register', 'POST', newUser);
         setUser(result);
       }

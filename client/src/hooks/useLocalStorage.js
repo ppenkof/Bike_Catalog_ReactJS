@@ -4,7 +4,7 @@ export default function useLocalStorage(initialState, key) {
     const [state, setState] = useState(() => {
         const storageData = localStorage.getItem(key);
 
-        if (!storageData) {
+        if (!storageData || storageData == 'undefined') {
             return initialState;
         }
 

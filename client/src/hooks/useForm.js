@@ -10,11 +10,11 @@ export default function useForm(callback, initialValues) {
         }));
     }
 
-    const formAction =  (formData) => {
-         callback(values, formData);
+    const formAction = (formData) => {
+        callback(values, formData);
     }
 
-    const register = (fieldName)=>{
+    const register = (fieldName) => {
         return {
             value: values[fieldName],
             onChange: changeHandler,
@@ -27,7 +27,8 @@ export default function useForm(callback, initialValues) {
         changeHandler,
         formAction,
         register,
-        setValues
+        setValues,
+        reset: () => setValues(initialValues)
     };
 
 }

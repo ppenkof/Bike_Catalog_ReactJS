@@ -11,20 +11,20 @@ export default function BikeCreate() {
         const data = values;
 
         data.price = Number(data.price);
-        
-        if (values.name.length <= 3 ) {
+
+        if (values.name.length <= 3) {
             return alert('Name is too short!');
         }
 
-        if (values.description.length <= 25 ) {
+        if (values.description.length <= 25) {
             return alert('Description should 25 symbols at least!');
         }
 
-        if (values.type.length <= 2 ) {
+        if (values.type.length <= 2) {
             return alert('Type is too short!');
         }
-    
-        if (values.price <= 0 ) {
+
+        if (values.price <= 0) {
             return alert('Price must be more than 0!');
         }
 
@@ -57,7 +57,7 @@ export default function BikeCreate() {
         description: '',
     });
 
-    return (        
+    return (
         <div className="new-bike-border">
             <div className="header-background">
                 <span>New bike</span>
@@ -65,7 +65,7 @@ export default function BikeCreate() {
             <form id="add-new-game" action={formAction}>
                 <div className="new-bike-name">
                     <label htmlFor="bikeName">bike name <span className="red">*</span></label>
-                    <input type="text" id="bikeName" {...register('name')}/>
+                    <input type="text" id="bikeName" {...register('name')} />
                 </div>
                 <div className="new-bike-content">
                     <label htmlFor="descriptionText">description <span className="red">*</span></label>
@@ -85,7 +85,7 @@ export default function BikeCreate() {
                 </div>
                 <div className="new-bike-buttons">
                     <button type="button" className="cancel" onClick={onCatalog}>Cancel</button>
-                    <button type="submit" className="add-new">Add</button>    
+                    <button type="submit" className="add-new">Add</button>
                 </div>
             </form>
         </div>

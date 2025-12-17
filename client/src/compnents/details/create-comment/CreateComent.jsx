@@ -1,62 +1,53 @@
-import { useParams } from "react-router";
 import useForm from "../../../hooks/useForm";
 import { v4 as uuid } from 'uuid';
-import useRequest from "../../../hooks/useRequest";
 
 export default function CreateComent({
     user,
-    onBegin,
-    onCreated
-}) {   
-    const {bikeId} = useParams();
-    const {request} = useRequest();
-
-    const submitHandler = async ({comment}) => { 
-        const data = {
+    onCreated,
+    bikeId
+}) {
+    const submitHandler = async ({ comment }) => {
+        const newComment = {
             _id: uuid(),
-            message: comment,
-            bikeId,
-            user
+            data: {
+                message: comment,
+                bikeId,
+                user
+            }
         };
 
-        onBegin(data);
-
-        if (data.message.length < 4 ) {
+        if (newComment.data.message.length < 4) {
             return alert('Message should be 4 symbols at least!');
         }
 
-        try {
-            const addedComments = await request('/data/comments', 'POST', {
-            data
-        });
+        onCreated(newComment);
 
-        onCreated(addedComments);
-
-        } catch (error) {
-            alert(error.message);
-        }
-      
+        // eslint-disable-next-line react-hooks/immutability
+        reset();
     }
+
 
     const {
         register,
-        formAction
+        formAction,
+        reset,
     } = useForm(submitHandler, {
         comment: '',
-
     });
+
+
 
     return (
         <article className="create-comment">
             <label>Add new comment:</label>
-            <form className="form" action = {formAction}>
-                <textarea 
-                {...register('comment')}
-                placeholder="Comment......"
+            <form className="form" action={formAction}>
+                <textarea
+                    {...register('comment')}
+                    placeholder="Comment......"
                 ></textarea>
-                <input 
-                    className="button" 
-                    type="submit" 
+                <input
+                    className="button"
+                    type="submit"
                     value="Comment"
                     disabled={!user}
                 />
