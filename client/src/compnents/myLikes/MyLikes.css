@@ -9,7 +9,7 @@
     --surface-2: rgba(54, 58, 63, 0.55);/* table rows */
     --border: rgba(255,255,255,0.10);
     --row-hover: rgba(127, 142, 163, 0.20);
-    --radius: 14px;
+    --radius: 10px;
     --shadow: 0 10px 30px rgba(0,0,0,0.35);
   }
   
@@ -21,7 +21,7 @@
     box-shadow: var(--shadow);
     overflow: hidden;
     color: var(--text);
-    margin: 4em auto;
+    margin: 11em;
   }
   
   .table-card__head {

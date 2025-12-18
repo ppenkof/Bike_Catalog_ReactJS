@@ -1,19 +1,27 @@
-//import { useContext } from "react";
 import BikeCard from "../bike-card/BikeCard";
-//import "./home.css";
-//import UserContext from "../../contexts/UserContext";
 import useRequest from "../../hooks/useRequest";
-//import { Link } from "react-router";
+import { useMemo } from "react";
+
 
 export default function Liked() {
-    //Data collection way
-    // const {data: theMostLikedBikes} = useRequest(`/data/bikes?sortBy=likes%20desc&pageSize=3`, []);//sort by creation date - useRequest(`/data/bikes?sortBy=_createdOn%20desc&pageSize=3`, []); 
-    // const {user} = useContext(UserContext);
+    const { data } = useRequest(`/likes`, []);
+    const {data: dataBike } = useRequest(`/bikes`, [], 'GET_ALL');
 
-    //Jsonstore collection way
-    const {data} = useRequest(`/bikes?sortBy=likes%20desc&pageSize=3`, [],'GET_ALL');
-    //const {user} = useContext(UserContext);
-    const theMostLikedBikes = data.slice(3);
+    const allLike = useMemo(() => {
+        const map = data.slice(0,3);
+           return map;
+       },[data]);
+
+    const theMostLikedBikes = useMemo(() => {
+        const bikes = [];
+        allLike.forEach(like => {
+            const bike = dataBike?.find(b => b._id === like.bikeId);
+            if (bike) {
+                bikes.push(bike);
+            }
+        });
+        return bikes;
+    }, [allLike, dataBike]);
 
     return (
         <div className="welcome">

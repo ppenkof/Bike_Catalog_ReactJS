@@ -4,22 +4,7 @@ import BikeCard from "../bike-card/BikeCard";
 
 
 export default function Catalog() {
-    //New method with custom hook
-    // const {user} = useUserContext();
-    //const {data: bikesData} = useRequest('/bikes',['GET', null, {j:'j'} ]);
-
-    // try {
-    //     useRequest('/data/bikes','POST', [...bikesData, {_ownerId: user._id}])
-
-    // } catch (error) {
-    //     alert(error.message)
-    // }
-
     const { data: bikes } = useRequest('/bikes', [], 'GET_ALL');
-    //const bikes = Object.values(data);
-
-    console.log(`Bikes: ${(bikes)}`);
-
 
     return (
         <>

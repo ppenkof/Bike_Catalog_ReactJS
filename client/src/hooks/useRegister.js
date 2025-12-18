@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import UserContext from "../contexts/UserContext";
 
 let baseUrl = 'http://localhost:3031';
@@ -8,7 +8,7 @@ export default function useRequest(url, initialState) {
     const [data, setData] = useState(initialState);
 
     // TODO Fix infinite loop problem on mount request with useEffect
-    const request = async (url, method, data, config = {}) => {
+    const request = useCallback(async (url, method, data, config = {}) => {
         let options = {};
 
         if (method) {
@@ -22,7 +22,7 @@ export default function useRequest(url, initialState) {
 
             options.body = JSON.stringify(data);
         }
-
+console.log('config.accessToken ,isAuthenticated: ',config.accessToken ,isAuthenticated);
         if (config.accessToken || isAuthenticated) {
             options.headers = {
                 ...options.headers,
@@ -31,6 +31,7 @@ export default function useRequest(url, initialState) {
             }
         }
         console.log('options: ', options);
+        
     try {
        const response = await fetch(`${baseUrl}${url}`, options);
 
@@ -38,7 +39,7 @@ export default function useRequest(url, initialState) {
             if (response.status === 409) {
                 alert(`The email already registered`);
             } else { 
-                alert(`There are no such user or resouce`);
+                alert(`Incorrect user or password`);
             }
             return response.statusText;
         }
@@ -52,9 +53,9 @@ export default function useRequest(url, initialState) {
         return result;
     
     } catch (error) {
-       console.log();(error);
+       console.log(error);
     }
-    };
+}, [isAuthenticated, user]);
 
     useEffect(() => {
         if (!url) return;
@@ -62,7 +63,7 @@ export default function useRequest(url, initialState) {
         request(url)
             .then(result => setData(result))
             .catch(err => console.log(err));
-    }, [url]);
+    }, [url,request]);
 
     return {
         request,

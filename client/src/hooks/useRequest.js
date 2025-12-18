@@ -68,11 +68,9 @@ export default function useRequest(url, initialState) {
 
     useEffect(() => {
         if (!url) return;
-
         // eslint-disable-next-line react-hooks/set-state-in-effect
         request(url)
             .catch((err) => alert(err));
-
     }, [url, request]);
 
     return {

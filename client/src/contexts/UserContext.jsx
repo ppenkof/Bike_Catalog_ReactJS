@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
-import useRequest from "../hooks/useRequest_copy";
+import useRequest from "../hooks/useRegister";
 
 
 const UserContext = createContext({
@@ -26,8 +26,10 @@ export function UserProvider({
   
     const registerHandler = async (email, password)=>{
         const newUser = {email, password};
+        let result;
+        user.accessToken ?  result = await request('/users/register', 'PUT', newUser, { accessToken: user.accessToken }) : 
+                            result = await request('/users/register', 'POST', newUser);  
         
-        const result = await request('/users/register', 'POST', newUser);
         setUser(result);
       }
     
