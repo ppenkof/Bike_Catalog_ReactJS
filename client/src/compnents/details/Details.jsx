@@ -86,6 +86,7 @@ export default function Details() {
                 bikeId: bikeId
             });
         }
+        
     };
 
     const createdCommentHandler = (createdComment) => {

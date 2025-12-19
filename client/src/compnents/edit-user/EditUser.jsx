@@ -58,7 +58,6 @@ export default function EditUser({
 
 useEffect(() => {
     setValues(user);
-console.log(user);
 }, [user._id]);
     
 

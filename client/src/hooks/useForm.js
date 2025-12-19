@@ -15,8 +15,9 @@ export default function useForm(callback, initialValues) {
     }
 
     const register = (fieldName) => {
+       
         return {
-            value: values[fieldName],
+            value: values[fieldName ?? 'undefined'],
             onChange: changeHandler,
             name: fieldName
         }

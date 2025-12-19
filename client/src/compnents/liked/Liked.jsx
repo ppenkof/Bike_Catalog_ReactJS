@@ -4,24 +4,27 @@ import { useMemo } from "react";
 
 
 export default function Liked() {
-    const { data } = useRequest(`/likes`, []);
+    const { data: likes } = useRequest(`/likes`, []);
     const {data: dataBike } = useRequest(`/bikes`, [], 'GET_ALL');
-
-    const allLike = useMemo(() => {
-        const map = data.slice(0,3);
-           return map;
-       },[data]);
 
     const theMostLikedBikes = useMemo(() => {
         const bikes = [];
-        allLike.forEach(like => {
-            const bike = dataBike?.find(b => b._id === like.bikeId);
+        let bike = {};
+        likes.forEach(like => {
+            bike.count = 1;
+            bike = dataBike?.find(b => b._id === like.bikeId);
+
             if (bike) {
-                bikes.push(bike);
+                if(bikes.includes(bike)){
+                    bike.count ++;
+                } else{
+                   bikes.push(bike); 
+                }           
             }
         });
+        bikes.sort((a, b) => b.count - a.count).slice(3);
         return bikes;
-    }, [allLike, dataBike]);
+    }, [likes, dataBike]);
 
     return (
         <div className="welcome">

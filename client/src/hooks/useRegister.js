@@ -22,7 +22,7 @@ export default function useRequest(url, initialState) {
 
             options.body = JSON.stringify(data);
         }
-console.log('config.accessToken ,isAuthenticated: ',config.accessToken ,isAuthenticated);
+
         if (config.accessToken || isAuthenticated) {
             options.headers = {
                 ...options.headers,
@@ -30,7 +30,6 @@ console.log('config.accessToken ,isAuthenticated: ',config.accessToken ,isAuthen
                 'X-Admin': true,
             }
         }
-        console.log('options: ', options);
         
     try {
        const response = await fetch(`${baseUrl}${url}`, options);
