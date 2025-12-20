@@ -8,6 +8,10 @@ export default function Edit() {
     const navigate = useNavigate();
     const { bikeId } = useParams();
     const { request } = useRequest();
+    
+    // const { data: bikes, request: requestBikes } = useRequest(`/bikes`, []);
+    // const bike = useMemo(() => bikes.find(currentBike => currentBike._id === bikeId) || {}, [bikes, bikeId]);
+
 
     const editGameHandler = async (values) => {
          values.price = Number(values.price);
@@ -34,8 +38,8 @@ export default function Edit() {
     });
 
      useEffect(() => {
-        request(`/bikes/${bikeId}`)
-            .then(result => {
+        request(`/bikes/${bikeId}`, 'GET_ONE')
+            .then(result => {               
                 setValues(result);
             })
             .catch(err => {

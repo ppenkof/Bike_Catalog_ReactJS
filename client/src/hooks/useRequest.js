@@ -11,7 +11,11 @@ export default function useRequest(url, initialState) {
         let options = {};
 
         if (method) {
-            options.method = method;
+            if(method.includes('GET')){
+                options.method = 'GET';
+            } else {
+                options.method = method;
+            } 
         }
 
         if (data) {
@@ -46,10 +50,14 @@ export default function useRequest(url, initialState) {
                 setDataState(Object.values(result));
                 break;
             case "POST":
-                setDataState(state => [...state, result]);
+                setDataState(state => {
+                    [...state, result];
+                    //console.log('>>>>>>>>>>>>>>POST', result, '>>>>>>>>>state',state);
+                });
                 break;
             case "PUT":
-                setDataState(state => state.map(currentItem => {
+                setDataState(state => state?.map(currentItem => {
+                    //console.log('>>>>>>>>>>>>>>PUT', result, '>>>>>>>>>state',state, '>>>>>>>>>currentItem',currentItem);
                     if (currentItem._id !== data._id) {
                         return { ...result };
                     } else {
@@ -58,10 +66,15 @@ export default function useRequest(url, initialState) {
                 }));
                 break;
             case "DELETE":
-                setDataState(state => state.filter(currentItem => currentItem._id !== data._id));
+                setDataState(state => {
+                    state.filter(currentItem => currentItem._id !== data._id);
+                    //console.log('>>>>>>>>>>>>>>DELETE', result, '>>>>>>>>>state',state, '>>>>>>>>>data',data);
+                });
                 break;
             default:
-                break;
+                //console.log('>>>>>>>>>>>>>>default', result);
+                setDataState(result);
+                return result;
         }
 
     }, [isAuthenticated, user]);

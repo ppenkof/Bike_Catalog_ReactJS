@@ -4,49 +4,88 @@ import "./Details.css";
 import useRequest from "../../hooks/useRequest";
 import { useUserContext } from "../../contexts/UserContext";
 import DetailsComments from "./details-comments/DetailsComments";
-import { useOptimistic, useMemo } from "react";
+import { useOptimistic, useMemo, useEffect, useTransition } from "react";
 import dateConverter from "../../utils/DateFormatConverter";
 
 export default function Details() {
     const { user, isAuthenticated, isAdmin } = useUserContext();
     const { bikeId } = useParams();
     const navigate = useNavigate();
+    const [, startTransition] = useTransition();
 
     const { data: bikes, request: requestBikes } = useRequest(`/bikes`, []);
 
     const { data: likes, request: requestLikes } = useRequest(`/likes`, []);
 
-    const isBikeLikedByCurrentUser = useMemo(() => {
-        return likes.findIndex(currentLike => user && currentLike.bikeId === bikeId && currentLike.userId === user._id) > -1
-    }, [bikeId, likes, user]);
-    const likesCount = useMemo(() => { likes.filter(currentLike => currentLike.bikeId === bikeId).length || 0 }, [bikeId, likes]);
-
-    const bike = useMemo(() => bikes.find(currentBike => currentBike._id === bikeId) || {}, [bikes, bikeId]);
-
-    const { data: comments, request: requestComment } = useRequest(
-        `/comments`,
-        [],
-        "GET_ALL"
+    // const isBikeLikedByCurrentUser = useMemo( () =>  {
+    //     return likes?.findIndex(currentLike => user && currentLike.bikeId === bikeId && currentLike.userId === user._id) > -1
+    // }, [bikeId, likes, user]);
+    const isBikeLikedByCurrentUser = useMemo(
+        () =>
+            !!likes?.find(
+                l => user && l.bikeId === bikeId && l.userId === user._id
+            ),
+        [bikeId, likes, user]
     );
 
 
-    const filteredComments = useMemo(() => comments?.filter(
-        (comment) => comment.data.bikeId == bikeId
-    ), [comments, bikeId]);
+    // const likesCount = useMemo(() => { likes?.filter(currentLike => currentLike.bikeId === bikeId).length || 0 }, [bikeId, likes]);
+    const likesCount = useMemo(() => (likes ? likes.filter(l => l.bikeId === bikeId).length : 0), [bikeId, likes]);
+
+
+    // const bike = useMemo(() => bikes?.find(currentBike => currentBike._id === bikeId) || {}, [bikes, bikeId]);
+    const bike = useMemo(
+        () => bikes?.find(b => b._id === bikeId) ?? {}, [bikes, bikeId]);
+
+
+
+    const { data: comments, request: requestComment } = useRequest(
+        `/comments`,
+        []);
+
+
+    // const filteredComments = useMemo(() => comments?.filter(
+    //     (comment) => comment.data.bikeId == bikeId
+    // ), [comments, bikeId]);
+
+    const filteredComments = useMemo(
+        () => comments?.filter(c => c.data.bikeId === bikeId) ?? [],
+        [comments, bikeId]
+    );
 
 
 
     const [optimisticComments, dispatchOptimisticComments] = useOptimistic(
-        filteredComments,
+        // filteredComments,
+        // (state, action) => {
+        //     switch (action.type) {
+        //         case "ADD_COMMENT":
+        //             return [...state, action.payload];
+        //         default:
+        //             return state;
+        //     }
+        // }
+
+        filteredComments ?? [],
         (state, action) => {
             switch (action.type) {
                 case "ADD_COMMENT":
                     return [...state, action.payload];
+                case "RESET":
+                    return [...(action.payload ?? [])];
                 default:
                     return state;
             }
         }
     );
+
+    // real comments updated? align optimistic state
+    useEffect(() => {
+        startTransition(() => {
+            dispatchOptimisticComments({ type: "RESET", payload: filteredComments ?? [] });
+        });
+    }, [filteredComments]);
+
 
     const deleteBikeHandler = async () => {
         navigate(`/bikes/${bikeId}/delete`);
@@ -78,20 +117,47 @@ export default function Details() {
     };
 
     const likeBikeHandler = async () => {
-        if (!isAuthenticated || !bike) return;
+        // if (!isAuthenticated || !bike) return;
+
+        // if (!isBikeLikedByCurrentUser) {
+        //     requestLikes('/likes', 'POST', {
+        //         userId: user._id,
+        //         bikeId: bikeId
+        //     });
+        // }
+
+        if (!isAuthenticated || !bike?._id) return;
 
         if (!isBikeLikedByCurrentUser) {
-            requestLikes('/likes', 'POST', {
-                userId: user._id,
-                bikeId: bikeId
-            });
+            await requestLikes('/likes', 'POST', { userId: user._id, bikeId });
+            // now refresh likes so the count/disabled state updates
+            await requestLikes('/likes');
         }
-        
     };
 
     const createdCommentHandler = (createdComment) => {
-        dispatchOptimisticComments({ type: 'ADD_COMMENT', payload: { ...createdComment } });
-        requestComment('/comments', 'POST', createdComment);
+        // dispatchOptimisticComments({ type: 'ADD_COMMENT', payload: { ...createdComment } });
+        // requestComment('/comments', 'POST', createdComment)
+        // .then(() => {
+        //       requestComment("/comments"); // pull server truth back in
+        //     });
+
+        // optimistic add must happen inside a transition
+        startTransition(() => {
+            dispatchOptimisticComments({
+                type: "ADD_COMMENT",
+                payload: { ...createdComment },
+            });
+        });
+
+        // fire the real request; when it resolves, re-fetch
+        requestComment("/comments", "POST", createdComment)
+            .then(() => requestComment("/comments", "GET"))
+            .catch(() => {
+                // optional: roll back by re-syncing
+                requestComment("/comments", "GET");
+            });
+
     };
 
     return (

@@ -15,9 +15,11 @@ export default function useForm(callback, initialValues) {
     }
 
     const register = (fieldName) => {
-       
+       if(!fieldName){
+            throw new Error('You must provide a field name to the register function');
+       }
         return {
-            value: values[fieldName ?? 'undefined'],
+            value: values[fieldName ?? ''],
             onChange: changeHandler,
             name: fieldName
         }

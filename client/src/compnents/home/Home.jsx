@@ -13,11 +13,11 @@ export default function Home() {
     //Jsonstore collection way
     //const {data} = useRequest(`/bikes?sortBy=likes%20desc&pageSize=3`, [],'GET_ALL');
     //sort by creation date
-    const {data } = useRequest(`/bikes`, [], 'GET_ALL'); //request data collection - /data/bikes?sortBy=likes%20desc&pageSize=3 - ?sortBy=_createdOn%20desc&pageSize=3
+    const {data } = useRequest(`/bikes`, []); //request data collection - /data/bikes?sortBy=likes%20desc&pageSize=3 - ?sortBy=_createdOn%20desc&pageSize=3
     const {user} = useContext(UserContext);
     
     const lastestBikes = useMemo(() => {
-     const map = data.sort(((a,b)=>b._createdOn - a._createdOn)).slice(3);
+     const map = data.sort(((a,b)=>b._createdOn - a._createdOn)).slice(0,3);
         return map;
     },[data]);
 

@@ -11,6 +11,7 @@ export default function BikeCreate() {
         const data = values;
 
         data.price = Number(data.price);
+        data._createdOn = Date.now();
 
         if (values.name.length <= 3) {
             return alert('Name is too short!');
@@ -33,7 +34,7 @@ export default function BikeCreate() {
         }
 
         try {
-            await request('/data/bikes', 'POST', data);
+            await request('/bikes', 'POST', data);
 
             navigate('/bikes');
         } catch (err) {
@@ -52,7 +53,7 @@ export default function BikeCreate() {
         name: '',
         type: '',
         price: 0,
-        date: '', //it will have to check
+        _createdOn: 0,
         imageUrl: '',
         description: '',
     });

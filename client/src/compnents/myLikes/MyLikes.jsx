@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { useUserContext } from "../../contexts/UserContext";
 
 export default function MyLikes() {
-  const { user } = useUserContext();
+  const { user, isAdmin } = useUserContext();
 
   const { data: bikes } = useRequest('/bikes', [], 'GET_ALL');
   const { data: likes } = useRequest(`/likes`, []);
@@ -17,6 +17,7 @@ export default function MyLikes() {
 
   return (
     <section className="table-card">
+      {!isAdmin ? (<>
       <header className="table-card__head">
         <h2>Bikes & Likes</h2>
       </header>
@@ -39,6 +40,12 @@ export default function MyLikes() {
           </tbody>
         </table>
       </div>
+      </>
+    ) : (
+      <div className="table-wrap">
+        <h2>Admins do not have likes</h2>
+      </div>
+    )}
     </section>
   );
 }

@@ -7,11 +7,11 @@ const UserContext = createContext({
     isAuthenticated: false,
     isAdmin: false,
     user: {
-        email:'',
-        password:'',
+        email: '',
+        password: '',
         _createdOn: 0,
-        _id:'',
-        accessToken:''
+        _id: '',
+        accessToken: ''
     },
     registerHandler() { },
     loginHandler() { },
@@ -22,36 +22,36 @@ export function UserProvider({
     children
 }) {
     const [user, setUser] = useLocalStorage(null);
-    const {request} = useRequest();
-  
-    const registerHandler = async (email, password)=>{
-        const newUser = {email, password};
+    const { request } = useRequest();
+
+    const registerHandler = async (email, password) => {
+        const newUser = { email, password };
         let result;
-        await user.accessToken ?  result = await request('/users/register', 'PUT', newUser, { accessToken: user.accessToken }) : 
-                            result = await request('/users/register', 'POST', newUser);  
-        
+        user?.accessToken ? result = await request('/users/me/password', 'POST', { user: password, newUser: password }, { accessToken: user.accessToken }) :
+            result = await request('/users/register', 'POST', newUser);
+        //console.log('registerHandler result:', result, user.accessToken);
         setUser(result);
-      }
-    
-    const loginHandler = async (email, password)=>{
-        const result = await request('/users/login', 'POST', {email, password});
+    }
+
+    const loginHandler = async (email, password) => {
+        const result = await request('/users/login', 'POST', { email, password });
 
         setUser(result);
     };
-   
+
     const logoutHandler = () => {
         // console.log(`user.accessToken!!!: ${user.accessToken}`);
-    return request('/users/logout', 'GET', null, { accessToken: user.accessToken })
-        .finally(() =>setUser(null));
+        return request('/users/logout', 'GET', null, { accessToken: user.accessToken })
+            .finally(() => setUser(null));
     };
 
     const userContextValues = {
-    user,
-    isAuthenticated: !!user?.accessToken,
-    isAdmin: (user?.email == 'peter@abv.bg'),
-    registerHandler,
-    loginHandler,
-    logoutHandler
+        user,
+        isAuthenticated: !!user?.accessToken,
+        isAdmin: (user?.email == 'peter@abv.bg'),
+        registerHandler,
+        loginHandler,
+        logoutHandler
     };
 
 
