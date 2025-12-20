@@ -51,12 +51,12 @@ export default function useRequest(url, initialState) {
                 break;
             case "POST":
                 setDataState(state => {
-                    [...state, result];
+                    Array.isArray(state) && [...state, result];
                 });
                 break;
             case "PUT":
-                setDataState(state => state?.map(currentItem => {
-                    if (currentItem._id !== data._id) {
+                setDataState(state => Array.isArray(state) && state.map(currentItem => {
+                    if (currentItem._id !== (data._id ?? result._id)) {//edited
                         return { ...result };
                     } else {
                         return currentItem;
