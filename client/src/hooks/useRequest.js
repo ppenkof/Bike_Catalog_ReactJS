@@ -52,12 +52,10 @@ export default function useRequest(url, initialState) {
             case "POST":
                 setDataState(state => {
                     [...state, result];
-                    //console.log('>>>>>>>>>>>>>>POST', result, '>>>>>>>>>state',state);
                 });
                 break;
             case "PUT":
                 setDataState(state => state?.map(currentItem => {
-                    //console.log('>>>>>>>>>>>>>>PUT', result, '>>>>>>>>>state',state, '>>>>>>>>>currentItem',currentItem);
                     if (currentItem._id !== data._id) {
                         return { ...result };
                     } else {
@@ -68,11 +66,10 @@ export default function useRequest(url, initialState) {
             case "DELETE":
                 setDataState(state => {
                     state.filter(currentItem => currentItem._id !== data._id);
-                    //console.log('>>>>>>>>>>>>>>DELETE', result, '>>>>>>>>>state',state, '>>>>>>>>>data',data);
+                  
                 });
                 break;
             default:
-                //console.log('>>>>>>>>>>>>>>default', result);
                 setDataState(result);
                 return result;
         }
