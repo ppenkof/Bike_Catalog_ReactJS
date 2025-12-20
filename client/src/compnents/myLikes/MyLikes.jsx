@@ -43,7 +43,7 @@ export default function MyLikes() {
       </>
     ) : (
       <div className="table-wrap">
-        <h2>Admins do not have likes</h2>
+        <h2>Admins do not like! Please login with an user profile</h2>
       </div>
     )}
     </section>
