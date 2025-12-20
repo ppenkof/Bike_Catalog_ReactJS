@@ -17,9 +17,6 @@ export default function Details() {
 
     const { data: likes, request: requestLikes } = useRequest(`/likes`, []);
 
-    // const isBikeLikedByCurrentUser = useMemo( () =>  {
-    //     return likes?.findIndex(currentLike => user && currentLike.bikeId === bikeId && currentLike.userId === user._id) > -1
-    // }, [bikeId, likes, user]);
     const isBikeLikedByCurrentUser = useMemo(
         () =>
             !!likes?.find(
@@ -28,12 +25,8 @@ export default function Details() {
         [bikeId, likes, user]
     );
 
-
-    // const likesCount = useMemo(() => { likes?.filter(currentLike => currentLike.bikeId === bikeId).length || 0 }, [bikeId, likes]);
     const likesCount = useMemo(() => (likes ? likes.filter(l => l.bikeId === bikeId).length : 0), [bikeId, likes]);
 
-
-    // const bike = useMemo(() => bikes?.find(currentBike => currentBike._id === bikeId) || {}, [bikes, bikeId]);
     const bike = useMemo(
         () => bikes?.find(b => b._id === bikeId) ?? {}, [bikes, bikeId]);
 
@@ -43,11 +36,6 @@ export default function Details() {
         `/comments`,
         []);
 
-
-    // const filteredComments = useMemo(() => comments?.filter(
-    //     (comment) => comment.data.bikeId == bikeId
-    // ), [comments, bikeId]);
-
     const filteredComments = useMemo(
         () => comments?.filter(c => c.data.bikeId === bikeId) ?? [],
         [comments, bikeId]
@@ -56,15 +44,6 @@ export default function Details() {
 
 
     const [optimisticComments, dispatchOptimisticComments] = useOptimistic(
-        // filteredComments,
-        // (state, action) => {
-        //     switch (action.type) {
-        //         case "ADD_COMMENT":
-        //             return [...state, action.payload];
-        //         default:
-        //             return state;
-        //     }
-        // }
 
         filteredComments ?? [],
         (state, action) => {
@@ -117,15 +96,6 @@ export default function Details() {
     };
 
     const likeBikeHandler = async () => {
-        // if (!isAuthenticated || !bike) return;
-
-        // if (!isBikeLikedByCurrentUser) {
-        //     requestLikes('/likes', 'POST', {
-        //         userId: user._id,
-        //         bikeId: bikeId
-        //     });
-        // }
-
         if (!isAuthenticated || !bike?._id) return;
 
         if (!isBikeLikedByCurrentUser) {
@@ -136,12 +106,6 @@ export default function Details() {
     };
 
     const createdCommentHandler = (createdComment) => {
-        // dispatchOptimisticComments({ type: 'ADD_COMMENT', payload: { ...createdComment } });
-        // requestComment('/comments', 'POST', createdComment)
-        // .then(() => {
-        //       requestComment("/comments"); // pull server truth back in
-        //     });
-
         // optimistic add must happen inside a transition
         startTransition(() => {
             dispatchOptimisticComments({

@@ -23,7 +23,7 @@ export default function Header() {
                                     <Link to="/bikes">Catalog</Link>
                                 </li>  
                                 <li>
-                                    <Link to="/the-most-liked">Really Liked</Link>
+                                    <Link to="/the-most-liked">The Most Liked</Link>
                                 </li>  
 
                                 {isAuthenticated ? (
