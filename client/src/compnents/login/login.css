@@ -1,7 +1,7 @@
 
 .auth-hero {
     position: relative;
-    min-height: calc(100vh - 260px); /* leaves space for header/footer like your layout */
+    min-height: calc(100vh - 160px); /* leaves space for header/footer like your layout */
     display: grid;
     place-items: center;
      background-size: cover;
